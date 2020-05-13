@@ -2,14 +2,18 @@ const Item = require("../models/Item");
 
 const getAllItems = async (res) => {
   let items = await Item.find({});
+
+  // console.log(items);
   items = items.map((item) => {
-    serializeItem(item);
+    return serializeItem(item);
   });
+
+  // console.log(items);
   return res.status(201).json(items);
 };
 
 const getItemDetails = async (itemid, res) => {
-  const item = await Item.findOne({ _id: itemid });
+  const item = await Item.findOne({ _id: itemid }).select("-__v");
   return res.status(201).json(item);
 };
 
@@ -24,7 +28,7 @@ const addItem = async (item, res) => {
 const updateItem = async (itemid, newItem, res) => {
   let updatedItem = await Item.findOneAndUpdate(
     { _id: itemid },
-    { itemname: newItem },
+    { itemname: newItem.itemname },
     { new: true }
   );
   return res
@@ -33,8 +37,8 @@ const updateItem = async (itemid, newItem, res) => {
 };
 
 const deleteItem = async (itemid, res) => {
-  const deletedItem = await Character.deleteOne({ _id: itemid });
-  return deleteItem.deletedCount > 0
+  const deletedItem = await Item.deleteOne({ _id: itemid });
+  return deletedItem.deletedCount > 0
     ? res.status(200).json({ message: "Hurry! your item is deleted" })
     : res
         .status(404)
