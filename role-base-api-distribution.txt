@@ -1,0 +1,22 @@
+1.user only see the items //not able create and not able to delete item  // not detailed view
+2.admin can see details of items //able to create and modefie items but not able to delete item
+3.super admin delete items 
+
+
+user routes:
+get method : /api/items 
+
+
+admin routes:
+get method : /api/items 
+get method : /api/items/details/:itemid
+post method : /api/items
+patch/put method : /api/items/:itemid
+
+
+super-admin routes:
+get method : /api/items
+get method : /api/items/details/:itemid
+post method : /api/items
+patch/put method : /api/items/:itemid
+delete method : /api/items/:itemid
