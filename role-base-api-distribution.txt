@@ -20,3 +20,11 @@ get method : /api/items/details/:itemid
 post method : /api/items
 patch/put method : /api/items/:itemid
 delete method : /api/items/:itemid
+
+
+PUT  VS PATCH requerst
+
+The existing
+HTTP PUT method only allows a complete replacement of a document.
+This proposal adds a new HTTP method, PATCH, to modify an existing
+HTTP resource.
